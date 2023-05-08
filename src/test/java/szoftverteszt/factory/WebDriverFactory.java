@@ -2,6 +2,7 @@ package szoftverteszt.factory;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.Dimension;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -62,6 +63,13 @@ public class WebDriverFactory {
             webDriver = setupWebDriver();
         }
         return webDriver;
+    }
+
+    public JavascriptExecutor getJsExecutor() {
+        if (Objects.isNull(webDriver)) {
+            webDriver = setupWebDriver();
+        }
+        return (JavascriptExecutor) webDriver;
     }
 
     public void tearDown() {

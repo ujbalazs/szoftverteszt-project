@@ -2,6 +2,7 @@ package szoftverteszt.stepdefinition.communities;
 
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.When;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -106,8 +107,28 @@ public class StepDefinitionsCommunities {
         communitiesPage.searchLocation(location);
         TimeUnit.SECONDS.sleep(1);
         communitiesPage.locationCheckboxClick();
-        TimeUnit.SECONDS.sleep(1);
+        TimeUnit.SECONDS.sleep(2);
+
+        long lastHeight = (long) webDriverFactory.getJsExecutor().executeScript("return document.body.scrollHeight");
+
+        while (true) {
+            webDriverFactory.getJsExecutor().executeScript("window.scrollTo(0, document.body.scrollHeight);");
+            TimeUnit.SECONDS.sleep(2);
+
+            long newHeight = (long) webDriverFactory.getJsExecutor().executeScript("return document.body.scrollHeight");
+            if (newHeight == lastHeight) {
+                break;
+            }
+            lastHeight = newHeight;
+        }
+
     }
+
+    @And("{int} card is visible")
+    public void iSeeCard(int count) {
+        Assert.assertEquals(count, communitiesPage.getCardCountOnPage());
+    }
+
 
 
 

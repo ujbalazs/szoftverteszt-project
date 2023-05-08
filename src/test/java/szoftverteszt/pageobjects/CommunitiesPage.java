@@ -40,7 +40,7 @@ public class CommunitiesPage extends CommonPageObject {
         searchField.sendKeys(searchTerm);
     }
 
-    public int getCardcountOnPage() {
+    public int getCardCountOnPage() {
         return cards.size();
     }
 
@@ -69,7 +69,7 @@ public class CommunitiesPage extends CommonPageObject {
     }
 
     public boolean searchIsEmpty() {
-        return searchField.getText().equals("");
+        return searchField.getAttribute("value").equals("");
     }
 
     public void searchLocation(String searchLoc) {
