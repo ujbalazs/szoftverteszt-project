@@ -20,6 +20,12 @@ public class MainPage extends CommonPageObject {
     @FindBy(className = "speakers-icon")
     private WebElement speakersButton;
 
+    @FindBy(className = "login")
+    private WebElement loginButton;
+
+    @FindBy(id = "kc-form-login")
+    private WebElement loginForm;
+
     public MainPage(WebDriverFactory webDriverFactory) {
         super(webDriverFactory);
     }
@@ -39,4 +45,10 @@ public class MainPage extends CommonPageObject {
     public void clickSpeakers() {
         speakersButton.click();
     }
+
+    public void clickLogin() {
+        loginButton.click();
+    }
+
+    public boolean isOnLoginPage(){return loginForm.isDisplayed();}
 }

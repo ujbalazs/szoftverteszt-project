@@ -19,6 +19,19 @@ public class CommunitiesPage extends CommonPageObject {
     @FindBy(css = ".evnt-communities-row .evnt-communities-column")
     private List<WebElement> cards;
 
+    @FindBy(css = ".evnt-communities-hero")
+    private WebElement titleBar;
+
+    @FindBy(id = "filter_location")
+    private WebElement locationDropdown;
+
+    @FindBy(xpath = "//div[@class='evnt-filter-menu evnt-dropdown-menu dropdown-menu with-arrow show']//input[@placeholder='Start typing']")
+    private WebElement locationSearch;
+
+    @FindBy(className = "form-check-label")
+    private WebElement locationCheckbox;
+
+
     public CommunitiesPage(WebDriverFactory factory) {
         super(factory);
     }
@@ -33,5 +46,37 @@ public class CommunitiesPage extends CommonPageObject {
 
     public WebElement getCard() {
         return card;
+    }
+
+    public List<WebElement> getCards() {
+        return cards;
+    }
+
+    public boolean isOpened() {
+        return titleBar.isDisplayed();
+    }
+
+    public boolean isSearchOnPage() {
+        return searchField.isDisplayed();
+    }
+
+    public void searchBarClick(){
+        searchField.click();
+    }
+
+    public void locationDropdownClick(){
+        locationDropdown.click();
+    }
+
+    public boolean searchIsEmpty() {
+        return searchField.getText().equals("");
+    }
+
+    public void searchLocation(String searchLoc) {
+        locationSearch.sendKeys(searchLoc);
+    }
+
+    public void locationCheckboxClick(){
+        locationCheckbox.click();
     }
 }
