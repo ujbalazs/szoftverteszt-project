@@ -41,11 +41,11 @@ Feature: Communities page test
   Scenario: only online communities are visible
     Given the More filters button is clicked
     When Online button is clicked
-    Then 523 card is visible
+    Then 524 online card is visible
 
   Scenario: Hungarian and English communities are selected
-    Given the More filters button is clicked
+    Given the More filters button is clicked again
     And the Language button is clicked
     When Hungarian is selected
     And English is selected
-    Then 386 card is visible
+    Then 387 hun and eng card is visible

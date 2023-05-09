@@ -32,6 +32,21 @@ public class StepDefinitionsCommunities {
     @Autowired
     private CommunitiesPage communitiesPage;
 
+    public void scrollDown() throws InterruptedException {
+        long lastHeight = (long) webDriverFactory.getJsExecutor().executeScript("return document.body.scrollHeight");
+
+        while (true) {
+            webDriverFactory.getJsExecutor().executeScript("window.scrollTo(0, document.body.scrollHeight);");
+            TimeUnit.SECONDS.sleep(2);
+
+            long newHeight = (long) webDriverFactory.getJsExecutor().executeScript("return document.body.scrollHeight");
+            if (newHeight == lastHeight) {
+                break;
+            }
+            lastHeight = newHeight;
+        }
+    }
+
     @Given("the home page is opened")
     public void communitiesPortalOpened() {
         webDriverFactory.getWebDriver().get("https://wearecommunity.io/");
@@ -109,18 +124,7 @@ public class StepDefinitionsCommunities {
         communitiesPage.locationCheckboxClick();
         TimeUnit.SECONDS.sleep(2);
 
-        long lastHeight = (long) webDriverFactory.getJsExecutor().executeScript("return document.body.scrollHeight");
-
-        while (true) {
-            webDriverFactory.getJsExecutor().executeScript("window.scrollTo(0, document.body.scrollHeight);");
-            TimeUnit.SECONDS.sleep(2);
-
-            long newHeight = (long) webDriverFactory.getJsExecutor().executeScript("return document.body.scrollHeight");
-            if (newHeight == lastHeight) {
-                break;
-            }
-            lastHeight = newHeight;
-        }
+        scrollDown();
 
     }
 
@@ -129,7 +133,47 @@ public class StepDefinitionsCommunities {
         Assert.assertEquals(count, communitiesPage.getCardCountOnPage());
     }
 
+    @Given("the More filters button is clicked")
+    public void morefilterClick() {
+        communitiesPage.moreFilerClick();
+    }
 
+    @When("Online button is clicked")
+    public void onlineClick() throws InterruptedException {
+        communitiesPage.onlineClick();
+        TimeUnit.SECONDS.sleep(2);
+    }
+
+    @And("524 online card is visible")
+    public void cardsVisible() {
+        Assert.assertEquals(524, communitiesPage.getCardCountFromResultNumber());
+    }
+
+    @Given("the More filters button is clicked again")
+    public void morefilterClickAgain() {
+        communitiesPage.moreFilerClick();
+    }
+
+    @And("the Language button is clicked")
+    public void langClick() {
+        communitiesPage.languagegClick();
+    }
+
+    @When("Hungarian is selected")
+    public void hunSelect() {
+        communitiesPage.hunClick();
+    }
+
+    @And("English is selected")
+    public void engSelect() throws InterruptedException {
+        communitiesPage.engClick();
+        TimeUnit.SECONDS.sleep(2);
+
+    }
+    @Then("387 hun and eng card is visible")
+    public void cardsHUnEngVisible() {
+        Assert.assertEquals(387, communitiesPage.getCardCountFromResultNumber());
+    }
 
 
 }
