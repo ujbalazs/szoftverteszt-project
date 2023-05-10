@@ -19,6 +19,8 @@ public class MainPage extends CommonPageObject {
 
     @FindBy(className = "speakers-icon")
     private WebElement speakersButton;
+    @FindBy(className = "calendar-icon")
+    private WebElement calendarButton;
 
     @FindBy(className = "login")
     private WebElement loginButton;
@@ -44,6 +46,10 @@ public class MainPage extends CommonPageObject {
 
     public void clickSpeakers() {
         speakersButton.click();
+    }
+
+    public void clickCalendar() {
+        calendarButton.click();
     }
 
     public void clickLogin() {
