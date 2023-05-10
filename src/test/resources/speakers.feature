@@ -5,6 +5,7 @@ Feature: Speakers page test
     And the Speakers button is clicked
 
   Scenario: We get to the speakers page
+    When the Speakers button is clicked
     Then the speakers page is opened
 
   Scenario: Login button is working on the speakers page
