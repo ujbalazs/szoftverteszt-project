@@ -34,7 +34,7 @@ public class StepDefinitionsSpeakers {
     }
 
     @When("the Speakers button is clicked")
-    public void iClickTheCommunitiesButton() {
+    public void iClickTheSpeakersButton() {
         mainPage.clickSpeakers();
     }
     @Then("the speakers page is opened")

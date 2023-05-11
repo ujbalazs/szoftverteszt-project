@@ -34,5 +34,6 @@ Feature: Articles page test
     Given the More filters button is clicked
     When the Author button is clicked
     And "Timea Kovacs" is typed in
+    And "Timea Kovacs" checkbox is clicked
     Then "Női karrierút az EPAM-nál, gyerekkel - három anya története" card is visible
     And 40 cards is visible
