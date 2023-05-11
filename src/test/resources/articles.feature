@@ -28,12 +28,12 @@ Feature: Articles page test
     And Russian is selected
     And the Date till button is clicked
     And 05/11/2023 is selected
-    Then 205 card is visible
+    Then 207 card is visible
 
   Scenario: Search for articles by Timea Kovacs
     Given the More filters button is clicked
     When the Author button is clicked
     And "Timea Kovacs" is typed in
     And "Timea Kovacs" checkbox is clicked
-    Then "Női karrierút az EPAM-nál, gyerekkel - három anya története" card is visible
+    Then "Női karrierút az EPAM-nál, gyerekkel - három anya t…" card visible
     And 40 cards is visible

@@ -74,8 +74,9 @@ public class StepDefinitionsArticles {
         articlesPage.languageClick();
     }
     @When("Hungarian is selected")
-    public void hunSelect() {
+    public void hunSelect() throws InterruptedException {
         articlesPage.hunClick();
+        TimeUnit.SECONDS.sleep(2);
     }
 
     @Then("21 card is visible")
@@ -83,35 +84,40 @@ public class StepDefinitionsArticles {
         Assert.assertEquals(21, articlesPage.getCardCountFromResultNumber());
     }
 
-    @Then("205 card is visible")
+    @When("Russian is selected")
+    public void ruSelect() throws InterruptedException {
+        articlesPage.ruClick();
+        TimeUnit.SECONDS.sleep(2);
+    }
+
+    @And("the Date till button is clicked")
+    public void dateTillClick() throws InterruptedException {
+        articlesPage.dateTillClick();
+        TimeUnit.SECONDS.sleep(2);
+    }
+
+    @When("05\\/11\\/2023 is selected")
+    public void date11Click() throws InterruptedException {
+        articlesPage.date11Click();
+        TimeUnit.SECONDS.sleep(2);
+    }
+
+    @Then("207 card is visible")
     public void russianCards() {
-        Assert.assertEquals(205, articlesPage.getCardCountFromResultNumber());
+        Assert.assertEquals(207, articlesPage.getCardCountFromResultNumber());
     }
 
 //    @Then("{int} card is visible")
 //    public void cardIsVisible(int count) {
 //        Assert.assertEquals(count, articlesPage.getCardCountFromResultNumber());
 //    }
-    @When("Russian is selected")
-    public void ruSelect() {
-        articlesPage.ruClick();
-    }
 
-    @And("the Date till button is clicked")
-    public void dateTillClick() {
-        articlesPage.dateTillClick();
-    }
     @When("the Author button is clicked")
     public void theAuthorButtonIsClicked() { articlesPage.authorClick(); }
 
     @And("{string} is typed in")
     public void isTypedIn(String searchString) throws InterruptedException {
         articlesPage.searchForAuthor(searchString);
-    }
-
-    @When("05\\/11\\/2023 is selected")
-    public void date11Click() {
-        articlesPage.date11Click();
     }
 
     @And("{int} cards is visible")
@@ -135,7 +141,19 @@ public class StepDefinitionsArticles {
     }
 
     @And("{string} checkbox is clicked")
-    public void checkboxIsClicked(String string) {
+    public void checkboxIsClicked(String string) throws InterruptedException {
         articlesPage.clickCheckBox();
+        TimeUnit.SECONDS.sleep(2);
+    }
+
+    @Then("{string} card visible")
+    public void timeaCards(String string) {
+        System.out.println(articlesPage.getCardName());
+        Assert.assertEquals(string, articlesPage.getCardName());
+    }
+
+    @And("40 card is visible")
+    public void timeaCardNumber () {
+        Assert.assertEquals(40, articlesPage.getCardCountFromResultNumber());
     }
 }

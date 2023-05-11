@@ -18,7 +18,7 @@ public class ArticlesPage extends CommonPageObject{
     @FindBy(css="html body div#app.evnt-body-wrapper div.evnt-main-container section#agenda_filters.evnt-filters-panel div.evnt-filters-wrapper.desktop div.evnt-filters-heading div#collapseMoreFilters.evnt-more-filters.collapse.show div.evnt-filters-heading-table div.evnt-filters-heading-row div.evnt-filters-heading-cell.cell-1 div.evnt-dropdown-filter.dropdown.show div.evnt-filter-menu.evnt-dropdown-menu.dropdown-menu.with-arrow.show div.evnt-filter-menu-search-wrapper input.evnt-text-fields.form-control.evnt-search")
     private WebElement authorSearchField;
 
-    @FindBy(css=".evnt-filter-menu-items-wrapper")
+    @FindBy(xpath="//label[@for='filter_author_search_0']")
     private WebElement timeaKovacsCheckBox;
 
     @FindBy(css = ".evnt-articles-row .evnt-articles-column .evnt-article-text-wrapper")
@@ -44,6 +44,9 @@ public class ArticlesPage extends CommonPageObject{
     private WebElement dateTill;
     @FindBy(xpath = "//a[text()='11']")
     private WebElement date11;
+
+    @FindBy(xpath = "//div[contains(@class,'evnt-article-name')]")
+    private WebElement cardname;
 
 
     public ArticlesPage(WebDriverFactory factory) { super(factory); }
@@ -94,6 +97,10 @@ public class ArticlesPage extends CommonPageObject{
     }
     public List<WebElement> getCards() {
         return cards;
+    }
+
+    public String getCardName(){
+        return cardname.getText();
     }
 
 
